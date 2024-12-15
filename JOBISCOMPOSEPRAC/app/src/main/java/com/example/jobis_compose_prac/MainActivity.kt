@@ -26,13 +26,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -74,7 +78,7 @@ fun BackStackRow(
             .padding(vertical = 8.dp, horizontal = 20.dp)
     ) {
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
+            painter = painterResource(R.drawable.arrow),
             contentDescription = null,
             modifier = modifier.size(28.dp)
         )
@@ -110,19 +114,59 @@ fun InputLayoutColumns(
     modifier: Modifier = Modifier
 ) {
     var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
 
     Column(modifier.fillMaxWidth()) {
-        Text(
-            text = "이메일",
-            style = TextStyle(fontSize = 14.sp)
-        )
-        OutlinedTextField(
-            value = email,
-            onValueChange = {
-                email = it
-            },
-            singleLine = true,
-            textStyle = 
-        )
+        Column(modifier.padding(vertical = 12.dp, horizontal = 24.dp)) {
+            Text(
+                text = "이메일",
+                style = TextStyle(fontSize = 14.sp),
+                modifier = modifier.padding(bottom = 4.dp)
+            )
+            OutlinedTextField(
+                value = email,
+                onValueChange = {
+                    email = it
+                },
+                singleLine = true,
+                placeholder = {
+                    Text(
+                        text = "example"
+                    )
+                    Text(
+                        text = "@dsm.hs.kr",
+                        textAlign = TextAlign.End
+                    )
+                },
+                modifier = modifier.fillMaxWidth()
+            )
+        }
+        Column(modifier.padding(vertical = 12.dp, horizontal = 24.dp)) {
+            Text(
+                text = "비밀번호",
+                style = TextStyle(fontSize = 14.sp),
+                modifier = modifier.padding(bottom = 4.dp)
+            )
+            OutlinedTextField(
+                modifier = modifier.fillMaxWidth(),
+                value = password,
+                onValueChange = {
+                    password = it
+                },
+                singleLine = true,
+                placeholder = {
+                    Text(text = "비밀번호를 입력해주세요.")
+                },
+                trailingIcon = {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.eye_close),
+                            contentDescription = null,
+                            modifier = modifier.size(24.dp)
+                        )
+                    }
+                }
+            )
+        }
     }
 }
