@@ -34,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -50,8 +51,11 @@ import androidx.compose.ui.unit.sp
 import com.example.jobis_compose_prac.ui.theme.Grayscale30
 import com.example.jobis_compose_prac.ui.theme.Grayscale50
 import com.example.jobis_compose_prac.ui.theme.Grayscale60
+import com.example.jobis_compose_prac.ui.theme.Grayscale70
 import com.example.jobis_compose_prac.ui.theme.JOBISCOMPOSEPRACTheme
+import com.example.jobis_compose_prac.ui.theme.PretendardFontFamily
 import com.example.jobis_compose_prac.ui.theme.Primary20
+import com.example.jobis_compose_prac.ui.theme.WantedSansFontFamily
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,14 +119,15 @@ fun LoginJOBISElement(
         Spacer(modifier = modifier.width(24.dp))
         Text(
             buildAnnotatedString {
-                withStyle(style = SpanStyle(color = Primary20)) {
+                withStyle(style = SpanStyle(color = Primary20, fontFamily = FontFamily.SansSerif)) {
                     append("JOBIS")
                 }
                 append("에서 로그인하기")
             },
             style = TextStyle(
                 fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                fontFamily = PretendardFontFamily
             )
         )
     }
@@ -160,7 +165,8 @@ fun InputLayoutColumns(
                             text = "example",
                             textAlign = TextAlign.Start,
                             style = TextStyle(
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Medium,
+                                fontFamily = WantedSansFontFamily,
                             )
                         )
                         Spacer(modifier = modifier.width(200.dp))
@@ -168,8 +174,8 @@ fun InputLayoutColumns(
                             text = "@dsm.hs.kr",
                             textAlign = TextAlign.End,
                             style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = FontFamily.SansSerif,
+                                fontWeight = FontWeight.Medium,
+                                fontFamily = WantedSansFontFamily,
                             )
                         )
                     }
@@ -206,8 +212,10 @@ fun InputLayoutColumns(
                     Text(
                         text = "비밀번호를 입력해주세요.",
                         style = TextStyle(
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Medium,
+                            fontFamily = WantedSansFontFamily,
                         ),
+                        color = Grayscale60
                     )
                 },
                 visualTransformation =
@@ -271,7 +279,15 @@ fun ForgetButtonElement(modifier: Modifier = Modifier) {
                     .size(24.dp)
                     .padding(end = 4.dp)
             )
-            Text(text = "비밀번호를 잊으셨나요?")
+            Text(
+                text = "비밀번호를 잊으셨나요?",
+                style = TextStyle(
+                    fontWeight = FontWeight.W600,
+                    fontFamily = WantedSansFontFamily,
+                    fontSize = 16.sp,
+
+                )
+            )
         }
     }
 }
@@ -299,6 +315,7 @@ fun JOBISLoginElement(modifier: Modifier = Modifier) {
                 text = "로그인",
                 style = TextStyle(
                     fontWeight = FontWeight.SemiBold,
+                    fontFamily = WantedSansFontFamily,
                     fontSize = 16.sp
                 )
             )
@@ -306,7 +323,7 @@ fun JOBISLoginElement(modifier: Modifier = Modifier) {
             Icon(
                 painter = painterResource(R.drawable.arrow_right),
                 contentDescription = null,
-                modifier = Modifier.size(width = 16.dp, height = 10.dp)
+                modifier = Modifier.size(width = 16.dp, height = 10.dp),
             )
         }
     }
