@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,7 +38,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -78,7 +81,7 @@ fun MyApp(modifier: Modifier = Modifier) {
             ForgetButtonElement()
         }
 
-        JOBISLoginElement(modifier.align(Alignment.BottomCenter))
+        JOBISLoginElement()
     }
 }
 
@@ -87,9 +90,7 @@ fun BackStackRow(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
+        modifier.fillMaxWidth()
     ) {
         Spacer(modifier = modifier.width(14.dp))
         IconButton(onClick = {}) {
@@ -141,8 +142,11 @@ fun InputLayoutColumns(
         Column(modifier.padding(vertical = 12.dp, horizontal = 24.dp)) {
             Text(
                 text = "이메일",
-                style = TextStyle(fontSize = 14.sp),
-                modifier = modifier.padding(bottom = 8.dp)
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold
+                ),
+                modifier = modifier.padding(bottom = 8.dp),
             )
             OutlinedTextField(
                 value = email,
@@ -164,11 +168,13 @@ fun InputLayoutColumns(
                             text = "@dsm.hs.kr",
                             textAlign = TextAlign.End,
                             style = TextStyle(
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = FontFamily.SansSerif,
                             )
                         )
                     }
                 },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 modifier = modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
                 colors = TextFieldDefaults.outlinedTextFieldColors(
@@ -183,7 +189,10 @@ fun InputLayoutColumns(
         Column(modifier.padding(vertical = 12.dp, horizontal = 24.dp)) {
             Text(
                 text = "비밀번호",
-                style = TextStyle(fontSize = 14.sp),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.SemiBold
+                ),
                 modifier = modifier.padding(bottom = 8.dp)
             )
             OutlinedTextField(
@@ -270,36 +279,37 @@ fun ForgetButtonElement(modifier: Modifier = Modifier) {
 @Composable
 fun JOBISLoginElement(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.fillMaxWidth()
     ) {
         Button(
-            onClick = {},
+            onClick = { },
             modifier = modifier
                 .padding(horizontal = 24.dp, vertical = 12.dp)
                 .fillMaxWidth()
-                .height(52.dp),
+                .height(52.dp)
+                .align(Alignment.Center),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Primary20,
                 contentColor = Color.White,
                 disabledContainerColor = Grayscale50,
                 disabledContentColor = Color.White
-            )
+            ),
         ) {
             Text(
                 text = "로그인",
                 style = TextStyle(
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.SemiBold,
                     fontSize = 16.sp
                 )
             )
+            Spacer(modifier = modifier.width(4.dp))
             Icon(
                 painter = painterResource(R.drawable.arrow_right),
                 contentDescription = null,
                 modifier = modifier
-                    .padding(start = 8.dp)
-                    .size(24.dp)
+                    .size(width = 16.dp, height = 10.dp)
+                    .align(Alignment.CenterVertically)
             )
         }
     }
