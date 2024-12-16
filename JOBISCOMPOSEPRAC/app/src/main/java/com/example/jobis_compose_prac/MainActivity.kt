@@ -81,7 +81,7 @@ fun MyApp(modifier: Modifier = Modifier) {
             ForgetButtonElement()
         }
 
-        JOBISLoginElement()
+        JOBISLoginElement(modifier.align(Alignment.BottomCenter))
     }
 }
 
@@ -286,8 +286,7 @@ fun JOBISLoginElement(modifier: Modifier = Modifier) {
             modifier = modifier
                 .padding(horizontal = 24.dp, vertical = 12.dp)
                 .fillMaxWidth()
-                .height(52.dp)
-                .align(Alignment.Center),
+                .height(52.dp),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Primary20,
@@ -307,9 +306,7 @@ fun JOBISLoginElement(modifier: Modifier = Modifier) {
             Icon(
                 painter = painterResource(R.drawable.arrow_right),
                 contentDescription = null,
-                modifier = modifier
-                    .size(width = 16.dp, height = 10.dp)
-                    .align(Alignment.CenterVertically)
+                modifier = Modifier.size(width = 16.dp, height = 10.dp)
             )
         }
     }
